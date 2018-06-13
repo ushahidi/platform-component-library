@@ -2,8 +2,7 @@ const path = require('path')
 
 const webpack = require('webpack') // eslint-disable-line import/no-extraneous-dependencies
 const ExtractTextPlugin = require('extract-text-webpack-plugin') // eslint-disable-line import/no-extraneous-dependencies
-
-const resolve = require('./webpack/resolve.js')
+const resolve = require('./webpack/resolve.js');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -65,6 +64,27 @@ module.exports = {
             },
           ],
         }),
+      },
+      {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                  {
+                      loader: 'css-loader',
+                      options: {
+                          modules: true,
+                          sourceMap: true,
+                          importLoaders: 2,
+                          localIdentName: '[name]__[local]___[hash:base64:5]'
+                      }
+                  },
+                  {
+                      loader: 'sass-loader'
+                  }
+              ]
+          })
       },
       {
         test: /\.svg$/,
