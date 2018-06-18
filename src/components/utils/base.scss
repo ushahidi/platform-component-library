@@ -1,5 +1,4 @@
-/* GLOBAL VARIABLES */
-@import './sass/settings.scss';
+
 
 /* READ DIRECTION */
 @import './dependencies/rtl/rtl-sass.scss';
@@ -16,3 +15,7 @@ This is a hack to include bourbon and neat, since I couldn't get webpack to impo
 
 /* MIXINS */
 @import './mixins/mixins.scss';
+
+/* GLOBAL VARIABLES */
+@import './sass/settings.scss';
+@import './sass/pattern-library/layout.scss';

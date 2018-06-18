@@ -20,11 +20,11 @@ module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
   <title>React Atomic Design</title>
   <link rel="manifest" href="/static/manifest.json">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link media="all" href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Prompt:300,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" media="all" href="/static/${paths.styles.path}" integrity="${paths.styles
     .sri}" />
 </head>
-<body>
+<body class="pl ltr-namespace">
   ${spriteContent}
   <div id="root">${initialHtml}</div>
   <script src="/static/${paths.vendor.path}"></script>
