@@ -7,7 +7,7 @@ export const ButtonType = {
   BUTTON: 'button',
   BETA: 'button-beta',
   GAMMA: 'button-gamma',
-  DISTRUCTIVE: 'button-destructive'
+  DESTRUCTIVE: 'button-destructive'
 };
 
 type Props = {
@@ -26,8 +26,7 @@ const Button = (props: Props): React.Element<*> => {
     {
       [button.disabled]: disabled,
     },
-    button[className],
-    button['button']
+    button[className]
 );
   return (
     <button type="button" onClick={onClick} disabled={disabled} className={classProps}>
