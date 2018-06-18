@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: /node_modules/,
+        include: [/node_modules/],
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -47,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -67,7 +67,26 @@ module.exports = {
       },
       {
           test: /\.scss$/,
-          exclude: /node_modules/,
+          include: [/node_modules/, /utils/],
+          use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                  {
+                      loader: 'css-loader',
+                      options: {
+                          modules: false,
+                          sourceMap: true,
+                      }
+                  },
+                  {
+                      loader: 'sass-loader'
+                  }
+              ]
+          })
+      },
+      {
+          test: /\.scss$/,
+          exclude: [/node_modules/, /utils/],
           use: ExtractTextPlugin.extract({
               fallback: 'style-loader',
               use: [
