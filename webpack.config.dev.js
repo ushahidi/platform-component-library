@@ -146,6 +146,14 @@ module.exports = {
           name: 'favicon.ico',
         },
       },
+      {
+                test: /\.woff/,
+                use: "url-loader?limit=10000"
+            },
+            {
+                test: /\.ttf|\.eot/,
+                use: "file-loader"
+            },
     ],
   },
 }
