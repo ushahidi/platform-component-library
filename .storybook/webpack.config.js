@@ -55,6 +55,46 @@ module.exports = {
           },
         ],
       },
+      {
+          test: /\.scss$/,
+          include: [/node_modules/, /utils/],
+          use: [
+              {
+                loader: 'style-loader',
+              },
+                  {
+                      loader: 'css-loader',
+                      options: {
+                          modules: false,
+                          sourceMap: true,
+                      }
+                  },
+                  {
+                      loader: 'sass-loader'
+                  }
+              ]
+      },
+      {
+          test: /\.scss$/,
+          exclude: [/node_modules/, /utils/],
+          use: [{
+            loader: 'style-loader',
+          },
+                  {
+                      loader: 'css-loader',
+                      options: {
+                          modules: true,
+                          sourceMap: true,
+                          importLoaders: 2,
+                          localIdentName: '[name]__[local]___[hash:base64:5]'
+                      }
+                  },
+                  {
+                      loader: 'sass-loader'
+                  }
+              ]
+      },
     ],
   },
+
 }
