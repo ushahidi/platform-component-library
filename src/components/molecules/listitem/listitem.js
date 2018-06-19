@@ -17,7 +17,6 @@ const ListItem = (props: Props): React.Element<*> => {
     listitem['list-item'],
     listitem[className],
 );
-console.log(listitem)
   return (
     <li className={classProps}>
         {children}

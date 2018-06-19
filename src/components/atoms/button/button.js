@@ -3,7 +3,7 @@ import * as React from 'react'
 import classnames from 'classnames'
 import button from './button.scss';
 
-export const ButtonType = {
+const ButtonType = {
   BUTTON: 'button',
   BETA: 'button-beta',
   GAMMA: 'button-gamma',
@@ -11,25 +11,22 @@ export const ButtonType = {
 };
 
 type Props = {
-  type: string,
-  onClick: Function,
+  buttonType: string,
   children: React.Node,
-  className: string,
-  disabled: boolean,
+  className: string
 };
 
 const Button = (props: Props): React.Element<*> => {
-  const { type, onClick, children, className, disabled } = props;
+  const { buttonType, className, children, ...customProps } = props;
+
   const classProps = classnames(
     button.button,
-    button[ButtonType[props.type]],
-    {
-      [button.disabled]: disabled,
-    },
+    button[ButtonType[buttonType]],
     button[className]
 );
+
   return (
-    <button type="button" onClick={onClick} disabled={disabled} className={classProps}>
+    <button type="button" className={classProps} {...customProps} >
       {children}
     </button>
 );
@@ -37,9 +34,7 @@ const Button = (props: Props): React.Element<*> => {
 
 Button.defaultProps = {
   type: ButtonType.BUTTON,
-  onClick: () => {},
   className: '',
-  disabled: false,
 };
 
 export default Button;

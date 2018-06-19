@@ -3,37 +3,37 @@ import * as React from 'react'
 import classnames from 'classnames'
 import input from './input.scss';
 
+const InputType = {
+    TEXT: 'text',
+    PASSWORD: 'password',
+    EMAIL: 'email',
+    SEARCH: 'search'
+};
+
 type Props = {
   className: string,
-  disabled: boolean,
-  placeholder: string,
-  id: string
+  inputType: string
 };
 
 const Input = (props: Props): React.Element<*> => {
-  const { className, disabled, placeholder, id } = props;
+  const { className, inputType, ...customProps } = props;
   const classProps = classnames(
     input.input,
-    {
-      [input.disabled]: disabled,
-    },
     input[className]
 );
+
   return (
     <input
-        type="text"
-        placeholder={placeholder}
-        disabled={disabled}
+        type={InputType[inputType]}
         className={classProps}
+        {...customProps}
     />
     );
 }
 
 Input.defaultProps = {
     className: '',
-    disabled: false,
-    placeholder: '',
-    id:''
+    inputType: 'TEXT'
 };
 
 export default Input;

@@ -6,21 +6,17 @@ import dropdown from './dropdown.scss';
 
 type Props = {
   className: string,
-  disabled: boolean,
   options: array
 };
 
 const Dropdown = (props: Props): React.Element<*> => {
-  const { className, disabled, options } = props;
+  const { className, options, ...customProps } = props;
   const classProps = classnames(
     dropdown['custom-select'],
-    {
-      [dropdown.disabled]: disabled,
-    },
     dropdown[className]
 );
   return (
-    <div className={classProps}>
+    <div className={classProps} {...customProps}>
           <select>
                 {options.map(option => {
                     return <option value={option.value}>{option.name}</option>;

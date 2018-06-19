@@ -3,11 +3,11 @@ import * as React from 'react'
 import classnames from 'classnames'
 import formfield from './formfield.scss';
 import Label from '../../atoms/label/label';
-import Input from '../../atoms/input/input';
+import Checkbox from '../../atoms/checkbox/checkbox';
 
 const FormFieldType={
-    ERROR: 'error',
-    SUCCESS: 'success'
+    RADIO: 'radio',
+    CHECKBOX: 'checkbox'
 };
 
 type Props = {
@@ -18,8 +18,8 @@ type Props = {
   errorText: string
 };
 
-const FormFieldInput = (props: Props): React.Element<*> => {
-  const {className, formFieldType, showError, label, id, errorText, ...customProps } = props;
+const FormFieldCheckbox = (props: Props): React.Element<*> => {
+  const {className, formFieldType, showError, legend, options, id, errorText, ...customProps } = props;
   const classProps = classnames(
     formfield['form-field'],
     formfield[className],
@@ -27,20 +27,30 @@ const FormFieldInput = (props: Props): React.Element<*> => {
 );
 
 return (
-      <div className={classProps}>
-        <Label htmlFor={id}>{label}</Label>
-        <Input id={id} {...customProps} />
+
+    <fieldset>
+        <legend>{legend}</legend>
+        <div className={classProps}>
+        {options.map((option, index) => {
+            return (
+                <Checkbox checkType={formFieldType} id={index} value={option.value} >
+                    {option.label}
+                </Checkbox>
+            )
+        }
+        )}
+        </div>
         { showError ?
             <span className={formfield['error']}>
                 {errorText}
             </span>
             : ''
         }
-      </div>
+</fieldset>
   );
 }
 
-FormFieldInput.defaultProps = {
+FormFieldCheckbox.defaultProps = {
     className: '',
     formFieldType:'',
     showError: false,
@@ -49,4 +59,4 @@ FormFieldInput.defaultProps = {
     errorText: ''
 };
 
-export default FormFieldInput;
+export default FormFieldCheckbox;

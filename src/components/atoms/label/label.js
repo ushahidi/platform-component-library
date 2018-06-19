@@ -7,19 +7,18 @@ import label from './label.scss';
 type Props = {
   className: string,
   children: React.Node,
-  labelFor: string
 };
 
 const Label = (props: Props): React.Element<*> => {
-  const { className, children, labelFor } = props;
+  const { className, children, ...customProps } = props;
   const classProps = classnames(
     label.label,
     label[className]
 );
   return (
     <label
-        for={labelFor}
         className={classProps}
+        {...customProps}
     >
         {children}
     </label>
@@ -28,8 +27,6 @@ const Label = (props: Props): React.Element<*> => {
 
 Label.defaultProps = {
     className: '',
-    children: '',
-    labelFor: '',
 };
 
 export default Label;
