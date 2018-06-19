@@ -1,7 +1,7 @@
 {
     "name": "React-Atomic-Design",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "src/components/index.js",
     "repository": "",
     "author": "Danilo Woznica <danilowoz@gmail.com>",
     "license": "MIT",
